@@ -1,32 +1,39 @@
 package exercicios.lista3.ex4;
 
 public class Conta {
-	private int numeroAgencia;
-	private int numeroConta;
+	private String numeroAgencia;
+	private String numeroConta;
 	private double saldo;
 
-	public Conta(int numeroAgencia, int numeroConta, double saldo) {
+	public Conta(String numeroAgencia, String numeroConta, double saldo) {
 		super();
 		this.numeroAgencia = numeroAgencia;
 		this.numeroConta = numeroConta;
 		this.saldo = saldo;
 	}
 
-	public void sacar(double valor) {
+	public boolean sacar(double valor) {
 		if (valor < 0.0) {
 			System.out.println("Operação inválida.\n");
+			return false;
 		} else if (valor > this.saldo) {
-			System.out.println("Você não tem saldo suficiente.\n");
+			System.out.println("Operação inválida: Saldo insuficiente.\n");
+			return false;
 		} else {
 			this.saldo -= valor;
+			System.out.println("Saque de R$ " + valor + " realizado com sucesso.\n");
+			return true;
 		}
 	}
 
-	public void depositar(double valor) {
+	public boolean depositar(double valor) {
 		if (valor < 0.0) {
 			System.out.println("Operação inválida.\n");
+			return false;
 		} else {
 			this.saldo += valor;
+			System.out.println("Depósito de R$ " + valor + " realizado com sucesso.\n");
+			return true;
 		}
 	}
 
@@ -37,14 +44,14 @@ public class Conta {
 	@Override
 	public String toString() {
 		return "Conta [numeroAgencia=" + numeroAgencia + ", numeroConta=" + numeroConta + ", saldo=" + saldo
-				+ " reais]";
+				+ " reais]\n";
 	}
 
-	public int getNumeroAgencia() {
+	public String getNumeroAgencia() {
 		return this.numeroAgencia;
 	}
 
-	public int getNumeroConta() {
+	public String getNumeroConta() {
 		return this.numeroConta;
 	}
 
