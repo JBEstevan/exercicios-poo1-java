@@ -47,4 +47,32 @@ public class Banco {
 		}
 		return null;
 	}
+
+	public void verificarSaldoConta(int numeroConta) {
+		ContaBancaria conta = this.verificarExistenciaConta(numeroConta);
+
+		if (conta != null) {
+			conta.imprimirSaldo();
+		} else {
+			System.out.println("Conta não encontrada.");
+		}
+	}
+
+	public void depositar(int numeroConta, double valor) {
+		ContaBancaria conta = this.verificarExistenciaConta(numeroConta);
+		if (conta != null) {
+			conta.depositar(valor);
+		} else {
+			System.out.println("Conta não encontrada.");
+		}
+	}
+
+	public void realizarSaqueConta(int numeroConta, double valor) {
+		ContaBancaria conta = this.verificarExistenciaConta(numeroConta);
+		if (conta != null) {
+			conta.sacar(valor);
+		} else {
+			System.out.println("Conta não encontrada.");
+		}
+	}
 }
