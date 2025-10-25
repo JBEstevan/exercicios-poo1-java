@@ -16,4 +16,24 @@ public class Dono {
 		this.endereco = endereco;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
 }
