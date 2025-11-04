@@ -9,39 +9,52 @@ public class Banco {
 	public Banco() {
 		this.contas = new ArrayList<Conta>();
 	}
-	
-	private boolean verificarConta(int numeroConta) {
-		for(Conta conta : contas) {
-			if(conta.getNumeroConta() == numeroConta) {
-				return true;
+
+	private Conta buscarContaPorNumero(int numeroConta) {
+		for (Conta conta : this.contas) {
+			if (conta.getNumeroConta() == numeroConta) {
+				return conta;
 			}
 		}
-		return false;
+		return null;
 	}
-	
+
 	public void criarConta(int numeroConta, String nome, String cpf) {
-		if(this.verificarConta(numeroConta)) {
+		if (this.buscarContaPorNumero(numeroConta) != null) {
 			System.out.println("Já existe uma conta de número " + numeroConta);
 			return;
 		}
 		Cliente novoCliente = new Cliente(nome, cpf);
 		Conta conta = new Conta(numeroConta, novoCliente);
-		
+
 		this.contas.add(conta);
+		System.out.println("Conta " + numeroConta + " criada com sucesso para " + nome + ".\n");
 	}
-	
+
 	public void sacarConta(int numeroConta, double valor) {
-		for(Conta conta : contas) {
-			if(conta.getNumeroConta() == numeroConta) {
-				conta.sacar(valor);
-				return;
-			}
+		Conta conta = this.buscarContaPorNumero(numeroConta);
+		if (conta != null) {
+			conta.sacar(valor);
+			return;
 		}
 		System.out.println("Conta inexistente.\n");
 	}
-	
-	/*Neste sistema o banco pode criar novas contas que deverão ser armazenadas.
-	Para isto, é necessário receber o número da nova conta, nome e cpf do titular. Para cada nova conta
-	criada, o saldo será 0 (zero) reais*/
 
+	public void depositarConta(int numeroConta, double valor) {
+		Conta conta = this.buscarContaPorNumero(numeroConta);
+		if (conta != null) {
+			conta.depositar(valor);
+			return;
+		}
+		System.out.println("Conta inexistente.\n");
+	}
+
+	public void verificarSaldo(int numeroConta) {
+		Conta conta = this.buscarContaPorNumero(numeroConta);
+		if (conta != null) {
+			conta.imprimirSaldo();
+			return;
+		}
+		System.out.println("Conta inexistente.\n");
+	}
 }

@@ -30,8 +30,8 @@ public class Conta {
 		System.out.println("Número da conta: " + this.numeroConta);
 		System.out.println("Saldo: " + this.saldo);
 		System.out.println("Nome do titular: " + this.cliente.getNome());
-		System.out.println("Nome do titular: " + this.cliente.getCpf());
-		System.out.println("===== ===== ===== =====\n");
+		System.out.println("CPF do titular: " + this.cliente.getCpf());
+		System.out.println("\n===== ===== ===== =====\n");
 	}
 
 	public int getNumeroConta() {
@@ -45,5 +45,4 @@ public class Conta {
 	public Cliente getCliente() {
 		return cliente;
 	}
-
 }
